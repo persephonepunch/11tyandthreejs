@@ -170,13 +170,13 @@ slider2();
             <div class="splide__embed w-embed"><button class="splide__arrow splide__arrow--prev"></button></div>
             <div class="splide__embed w-embed"><button class="splide__arrow splide__arrow--next"></button></div>
           </div>
-          <div class="splide__track w-dyn-list">
-            <div role="list" class="splide__list w-dyn-items">
-              <div role="listitem" class="splide__slide w-dyn-item"><img src="{{ images.0.url }}" loading="lazy" alt="{{ images.0.alt | trim | escape }}" class="image-2"></div>
-            </div>
-            <div class="w-dyn-empty">
+          {%- assign collection = collections.saba | sort: "-created-on" -%}<div class="splide__track w-dyn-list">
+            {%- unless collection.length == 0 -%}<div role="list" class="splide__list w-dyn-items">
+              {%- for item in collection -%}<div role="listitem" class="splide__slide w-dyn-item"><img src="{{ item.data.f_mainimage.url }}" loading="lazy" alt="{{ item.data.f_mainimage.alt }}" class="image-2"></div>{%- endfor -%}
+            </div>{%- endunless -%}
+            {%- if collection.length == 0 -%}<div class="w-dyn-empty">
               <div>{{ texts.3d503d2b }}</div>
-            </div>
+            </div>{%- endif -%}
           </div>
         </div>
       </div>
@@ -492,15 +492,15 @@ slider2();
           <div class="formswatchdiv"><label for="email" class="formslabel">{{ texts.-2b7010d0 }}</label><input type="email" class="formsinput w-input" maxlength="256" name="email-5" data-name="Email 5" placeholder="" id="email-5" required="">
             <h4 class="swatchtitle">{{ texts.77da766b }}</h4>
             <div>
-              <div class="w-dyn-list">
-                <div role="list" class="collection-list w-dyn-items">
-                  <div role="listitem" class="w-dyn-item"><label class="w-checkbox checkbox-field"><img src="{{ images.0.url }}" loading="lazy" alt="{{ images.0.alt | trim | escape }}" class="image-3">
-                      <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox-2"></div><input type="checkbox" name="checkbox" id="checkbox" data-name="Checkbox" style="opacity:0;position:absolute;z-index:-1"><span class="checkboxlabel w-form-label" for="checkbox"></span>
-                    </label></div>
-                </div>
-                <div class="w-dyn-empty">
+              {%- assign collection = collections.swatches | sort: "-created-on" -%}<div class="w-dyn-list">
+                {%- unless collection.length == 0 -%}<div role="list" class="collection-list w-dyn-items">
+                  {%- for item in collection -%}<div role="listitem" class="w-dyn-item"><label class="w-checkbox checkbox-field"><img src="{{ item.data.f_swatch-image.url }}" loading="lazy" alt="{{ item.data.f_swatch-image.alt }}" class="image-3">
+                      <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox-2"></div><input type="checkbox" name="checkbox" id="checkbox" data-name="Checkbox" style="opacity:0;position:absolute;z-index:-1; background-image: url('{{item.data.f_swatch-image.url}}');; background-color: {{item.data.f_color-hex}};"><span class="checkboxlabel w-form-label" for="checkbox">{{ item.data.title }}</span>
+                    </label></div>{%- endfor -%}
+                </div>{%- endunless -%}
+                {%- if collection.length == 0 -%}<div class="w-dyn-empty">
                   <div>{{ texts.3d503d2b }}</div>
-                </div>
+                </div>{%- endif -%}
               </div>
             </div><input type="submit" value="Submit" data-wait="Please wait..." class="formsubmit w-button">
           </div>
