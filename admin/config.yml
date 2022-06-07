@@ -1,0 +1,618 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: materials
+    label: Materials
+    folder: cms/materials
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: materials
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[materials].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: swatches
+    label: Swatches
+    folder: cms/swatches
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_color-hex
+        label: Color Hex
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - hint: ''
+        name: f_swatch-name
+        label: Swatch Name
+        widget: string
+        required: false
+      - hint: ''
+        name: f_swatch-image
+        label: Swatch Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_material
+        label: Material
+        widget: relation
+        required: false
+        collection: materials
+        value_field: cms/materials/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: swatches
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[swatches].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: saba
+    label: Sabas
+    folder: cms/saba
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_mainimage
+        label: mainimage
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: saba
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[saba].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: design folio, key: fa18447'
+            label: Text
+            name: fa18447
+            widget: string
+          - hint: >-
+              Original text: custom design folio for your private or public
+              project, key: 36d68b36
+            label: Text
+            name: 36d68b36
+            widget: string
+          - hint: 'Original text: swatch selector, key: -26573cbd'
+            label: Text
+            name: '-26573cbd'
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: Saba , key: 4bf3293'
+            label: Text
+            name: 4bf3293
+            widget: string
+          - hint: 'Original text: Upholstered Chair, key: -4410b6a4'
+            label: Text
+            name: '-4410b6a4'
+            widget: string
+          - hint: 'Original text: $2800, key: 212e0ea'
+            label: Text
+            name: 212e0ea
+            widget: string
+          - hint: 'Original text: upholstery, key: 65a565e1'
+            label: Text
+            name: 65a565e1
+            widget: string
+          - hint: 'Original text: Name, key: 24eeab'
+            label: Text
+            name: 24eeab
+            widget: string
+          - hint: 'Original text: Email Address, key: -2b7010d0'
+            label: Text
+            name: '-2b7010d0'
+            widget: string
+          - hint: 'Original text: Phone Number, key: -55f81185'
+            label: Text
+            name: '-55f81185'
+            widget: string
+          - hint: 'Original text: Sample Colors, key: 226cf8a6'
+            label: Text
+            name: 226cf8a6
+            widget: string
+          - hint: 'Original text: Radio, key: 4b123db'
+            label: Text
+            name: 4b123db
+            widget: string
+          - hint: 'Original text: Select one..., key: 57f3b1cc'
+            label: Text
+            name: 57f3b1cc
+            widget: string
+          - hint: 'Original text: Velvet, key: -677d14f8'
+            label: Text
+            name: '-677d14f8'
+            widget: string
+          - hint: 'Original text: Linen, key: 4605eda'
+            label: Text
+            name: 4605eda
+            widget: string
+          - hint: 'Original text: Leather, key: 66404409'
+            label: Text
+            name: '66404409'
+            widget: string
+          - hint: 'Original text: Chenille, key: 600fbeca'
+            label: Text
+            name: 600fbeca
+            widget: string
+          - hint: 'Original text: Upload Sample, key: 3d6458a9'
+            label: Text
+            name: 3d6458a9
+            widget: string
+          - hint: 'Original text: Tell us about your project, key: -1dd9106e'
+            label: Text
+            name: '-1dd9106e'
+            widget: string
+          - hint: 'Original text: Send Custom Swatches, key: -2ac98ebf'
+            label: Text
+            name: '-2ac98ebf'
+            widget: string
+          - hint: 'Original text: I''d like to have a virtual model, key: 3453f353'
+            label: Text
+            name: 3453f353
+            widget: string
+          - hint: >-
+              Original text: I'd like to set up a Private Design Folio, key:
+              -b0969cc
+            label: Text
+            name: '-b0969cc'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: Link 1, key: -78547655'
+            label: Text
+            name: '-78547655'
+            widget: string
+          - hint: 'Original text: Link 2, key: -78547654'
+            label: Text
+            name: '-78547654'
+            widget: string
+          - hint: 'Original text: Link 3, key: -78547653'
+            label: Text
+            name: '-78547653'
+            widget: string
+          - hint: 'Original text: Base, key: 1f7af1'
+            label: Text
+            name: 1f7af1
+            widget: string
+          - hint: 'Original text: Metal Base Finish, key: -38d656f7'
+            label: Text
+            name: '-38d656f7'
+            widget: string
+          - hint: 'Original text: Chrome, key: 7843be9a'
+            label: Text
+            name: 7843be9a
+            widget: string
+          - hint: 'Original text: Copper Matte, key: 161cee0a'
+            label: Text
+            name: 161cee0a
+            widget: string
+          - hint: 'Original text: Gold Matte, key: -3e016bef'
+            label: Text
+            name: '-3e016bef'
+            widget: string
+          - hint: 'Original text: Bronze, key: 771a71ba'
+            label: Text
+            name: 771a71ba
+            widget: string
+          - hint: 'Original text: Painted Base Finish, key: 5bc2ea7f'
+            label: Text
+            name: 5bc2ea7f
+            widget: string
+          - hint: 'Original text: Black, key: 3d49fdf'
+            label: Text
+            name: 3d49fdf
+            widget: string
+          - hint: 'Original text: White, key: 4fadc09'
+            label: Text
+            name: 4fadc09
+            widget: string
+          - hint: 'Original text: Red, key: 14071'
+            label: Text
+            name: '14071'
+            widget: string
+          - hint: 'Original text: Azure, key: 3cd326f'
+            label: Text
+            name: 3cd326f
+            widget: string
+          - hint: 'Original text: DIMENSIONS, key: 359c2bcd'
+            label: Text
+            name: 359c2bcd
+            widget: string
+          - hint: 'Original text: REQUEST SWATCHES, key: 4723207b'
+            label: Text
+            name: 4723207b
+            widget: string
+          - hint: 'Original text: SCHEDULE DESIGN SESSION, key: -1ce5d943'
+            label: Text
+            name: '-1ce5d943'
+            widget: string
+          - hint: 'Original text: UPLOAD DESIGN REFERENCE, key: 42177388'
+            label: Text
+            name: '42177388'
+            widget: string
+          - hint: 'Original text: BUY NOW, key: 395d19fc'
+            label: Text
+            name: 395d19fc
+            widget: string
+          - hint: 'Original text: Direct Pay with METAMASK, key: 50184a9c'
+            label: Text
+            name: 50184a9c
+            widget: string
+          - hint: 'Original text: Velvets, key: 77da766b'
+            label: Text
+            name: 77da766b
+            widget: string
+          - hint: 'Original text: swatches, key: -12bbfe16'
+            label: Text
+            name: '-12bbfe16'
+            widget: string
+          - hint: 'Original text: Canvas, key: 77df6178'
+            label: Text
+            name: 77df6178
+            widget: string
+          - hint: 'Original text: Boucle, key: 76f2ba74'
+            label: Text
+            name: 76f2ba74
+            widget: string
+          - hint: 'Original text: COLORS, key: 76d1b170'
+            label: Text
+            name: 76d1b170
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: 3bb2025
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3ee32087'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
