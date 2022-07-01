@@ -348,6 +348,30 @@ collections:
             name: title
             widget: hidden
             default: Texts
+          - hint: 'Original text: Home, key: 2268ff'
+            label: Text
+            name: 2268ff
+            widget: string
+          - hint: 'Original text: About, key: 3c2336d'
+            label: Text
+            name: 3c2336d
+            widget: string
+          - hint: 'Original text: Contact, key: -64104400'
+            label: Text
+            name: '-64104400'
+            widget: string
+          - hint: 'Original text: login, key: 625ef69'
+            label: Text
+            name: 625ef69
+            widget: string
+          - hint: 'Original text: Logout, key: -7802fe56'
+            label: Text
+            name: '-7802fe56'
+            widget: string
+          - hint: 'Original text: folio, key: 5d17529'
+            label: Text
+            name: 5d17529
+            widget: string
           - hint: 'Original text: design folio, key: fa18447'
             label: Text
             name: fa18447
@@ -365,6 +389,10 @@ collections:
           - hint: 'Original text: No items found., key: 3d503d2b'
             label: Text
             name: 3d503d2b
+            widget: string
+          - hint: 'Original text: design references, key: -4960a1d6'
+            label: Text
+            name: '-4960a1d6'
             widget: string
           - hint: 'Original text: Saba , key: 4bf3293'
             label: Text
@@ -576,19 +604,6 @@ collections:
             name: title
             widget: hidden
             default: Images
-          - label: Image
-            name: 3bb2025
-            widget: object
-            fields:
-              - name: url
-                label: Image Url
-                widget: image
-                allow_multiple: false
-                required: false
-              - name: alt
-                label: Image Alt
-                widget: string
-                required: false
           - label: Image
             name: '0'
             widget: object
