@@ -14,138 +14,6 @@
   <link href="{{ settings.site.favicon | default: "/assets/images/favicon.jpg" }}" rel="shortcut icon" type="image/x-icon">
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.jpg" }}" rel="apple-touch-icon">
   <link rel="manifest" href="/assets/null/manifest.json">
-  <!--  UIkit CSS  -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/css/uikit.min.css">
-  <!--  UIkit JS  -->
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.2.2/dist/js/splide.min.js"></script>
-  <script>
-    $(function() {
-  $('.contact-button').click(function() {
-    $('.modal').fadeIn();
-    $('.modal-background').fadeIn();
-    e.stopPropagation();
-  });
-  $('.close-modal').click(function() {
-      $('.modal').fadeOut();
-      $('.modal-background').fadeOut();
-  });  
-  $('.modal-background').click(function() {
-      $('.modal').fadeOut();
-      $('.modal-background').fadeOut();
-  }); 
-  $(document).keydown(function (event) {
-      if (event.keyCode == 27) {
-          $('.modal').fadeOut();
-          $('.modal-background').fadeOut();
-      }
-  });
-});
-</script>
-  <script>
-Webflow.push(function() {
-   $('.contact-button').click(function(e) {
-      e.preventDefault();
-   $('body').css('overflow', 'hidden');
- });  $('.close-modal').click(function(e) {
-      e.preventDefault();
-    $('body').css('overflow', 'auto');
- });
-});
-</script>
-  <script>
-Webflow.push(function() {
-  $('.modal-background').click(function(e) {
-    e.preventDefault();
-       $('body').css('overflow', 'auto');
- });
-});
-</script>
-  <script>
-function slider1() {
-let splides = $('.slider1');
-for ( let i = 0, splideLength = splides.length; i < splideLength; i++ ) {
-	new Splide( splides[ i ], {
-  // Desktop on down
-	perPage: 3,
-	perMove: 1,
-  focus: 0, // 0 = left and 'center' = center
-  type: 'slide', // 'loop' or 'slide'
-  gap: '0em', // space between slides
-  arrows: 'slider', // 'slider' or false
-  pagination: 'slider', // 'slider' or false
-  speed : 600, // transition speed in miliseconds
-  dragAngleThreshold: 60, // default is 30
-  autoWidth: true, // for cards with differing widths
-  rewind : false, // go back to beginning when reach end
-  rewindSpeed : 400,
-  waitForTransition : false,
-  updateOnMove : true,
-  trimSpace: false, // true removes empty space from end of list
-  breakpoints: {
-		991: {
-    	// Tablet
-			perPage: 2,
-      gap: '3vw',
-		},
-    767: {
-    	// Mobile Landscape
-			perPage: 1,
-      gap: '3vw',
-		},
-    479: {
-    	// Mobile Portrait
-			perPage: 1,
-      gap: '3vw',
-		}
-	}
-} ).mount();
-}
-}
-slider1();
-function slider2() {
-let splides = $('.slider2');
-for ( let i = 0, splideLength = splides.length; i < splideLength; i++ ) {
-	new Splide( splides[ i ], {
-  // Desktop on down
-	perPage: 5,
-	perMove: 1,
-  focus: 'center', // 0 = left and 'center' = center
-  type: 'loop', // 'loop' or 'slide'
-  gap: '4em', // space between slides
-  arrows: 'slider', // 'slider' or false
-  pagination: 'slider', // 'slider' or false
-  speed : 550, // transition speed in miliseconds
-  dragAngleThreshold: 80, // default is 30
-  autoWidth: false, // for cards with differing widths
-  rewind : false, // go back to beginning when reach end
-  rewindSpeed : 800,
-  waitForTransition : false,
-  updateOnMove : true,
-  trimSpace: false,
-  breakpoints: {
-		991: {
-    	// Tablet
-			perPage: 3,
-      gap: '4vw',
-		},
-    767: {
-    	// Mobile Landscape
-			perPage: 1,
-      gap: '4vw',
-		},
-    479: {
-    	// Mobile Portrait
-			perPage: 1,
-      gap: '4vw',
-		}
-	}
-} ).mount();
-}
-}
-slider2();
-</script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.2.2/dist/css/splide-core.min.css">
   <style>
 .splide__track {
@@ -190,7 +58,7 @@ slider2();
             <div class="splide__embed w-embed"><button class="splide__arrow splide__arrow--prev"></button></div>
             <div class="splide__embed w-embed"><button class="splide__arrow splide__arrow--next"></button></div>
           </div>
-          <div class="splide__track w-dyn-list">
+          <div id="Slider1" class="splide__track w-dyn-list">
             <div role="list" class="splide__list w-dyn-items">
               <div role="listitem" class="splide__slide w-dyn-item"><img src="{{ images.0.url }}" loading="lazy" alt="{{ images.0.alt | trim | escape }}" class="image-2"></div>
             </div>
