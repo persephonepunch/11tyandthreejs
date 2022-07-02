@@ -4,7 +4,7 @@ title: Burnt Umber
 slug: burnt-umber
 updated-on: '2022-06-07T19:29:43.848Z'
 created-on: '2022-06-07T18:26:40.851Z'
-published-on: '2022-06-07T19:36:41.120Z'
+published-on: '2022-07-02T00:41:25.091Z'
 f_material:
   - cms/materials/velvets.md
 f_swatch-image:

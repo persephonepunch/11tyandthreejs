@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-wf-page="629f84148d90ffaa93bd3ee7" data-wf-site="629948318252a1ce9f6a9fc6"><head><link rel="preconnect" crossorigin="true" href="https://assets.website-files.com">{%- seo seo -%}
+<html data-wf-page="62bf941aff36a91e1b098ea3" data-wf-site="629948318252a1ce9f6a9fc6"><head><link rel="preconnect" crossorigin="true" href="https://assets.website-files.com">{%- seo seo -%}
   <meta charset="utf-8">
   
   
@@ -13,9 +13,140 @@
   <script type="text/javascript">WebFont.load({  google: {    families: ["Inter:100,200,300,regular,500,600"]  }});</script>
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
   <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
-  <link href="{{ settings.site.favicon | default: "/assets/images/favicon.jpg" }}" rel="shortcut icon" type="image/x-icon">
-  <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.jpg" }}" rel="apple-touch-icon">
-  <link rel="manifest" href="/assets/null/manifest.json">
+  <link href="{{ settings.site.favicon | default: "/assets/images/favicon.ico" }}" rel="shortcut icon" type="image/x-icon">
+  <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
+  <!--  UIkit CSS  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/css/uikit.min.css">
+  <!--  UIkit JS  -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.2.2/dist/js/splide.min.js"></script>
+  <script>
+    $(function() {
+  $('.contact-button').click(function() {
+    $('.modal').fadeIn();
+    $('.modal-background').fadeIn();
+    e.stopPropagation();
+  });
+  $('.close-modal').click(function() {
+      $('.modal').fadeOut();
+      $('.modal-background').fadeOut();
+  });  
+  $('.modal-background').click(function() {
+      $('.modal').fadeOut();
+      $('.modal-background').fadeOut();
+  }); 
+  $(document).keydown(function (event) {
+      if (event.keyCode == 27) {
+          $('.modal').fadeOut();
+          $('.modal-background').fadeOut();
+      }
+  });
+});
+</script>
+  <script>
+Webflow.push(function() {
+   $('.contact-button').click(function(e) {
+      e.preventDefault();
+   $('body').css('overflow', 'hidden');
+ });  $('.close-modal').click(function(e) {
+      e.preventDefault();
+    $('body').css('overflow', 'auto');
+ });
+});
+</script>
+  <script>
+Webflow.push(function() {
+  $('.modal-background').click(function(e) {
+    e.preventDefault();
+       $('body').css('overflow', 'auto');
+ });
+});
+</script>
+  <script>
+function slider1() {
+let splides = $('.slider1');
+for ( let i = 0, splideLength = splides.length; i < splideLength; i++ ) {
+	new Splide( splides[ i ], {
+  // Desktop on down
+	perPage: 3,
+	perMove: 1,
+  focus: 0, // 0 = left and 'center' = center
+  type: 'slide', // 'loop' or 'slide'
+  gap: '0em', // space between slides
+  arrows: 'slider', // 'slider' or false
+  pagination: 'slider', // 'slider' or false
+  speed : 600, // transition speed in miliseconds
+  dragAngleThreshold: 60, // default is 30
+  autoWidth: true, // for cards with differing widths
+  rewind : false, // go back to beginning when reach end
+  rewindSpeed : 400,
+  waitForTransition : false,
+  updateOnMove : true,
+  trimSpace: false, // true removes empty space from end of list
+  breakpoints: {
+		991: {
+    	// Tablet
+			perPage: 2,
+      gap: '3vw',
+		},
+    767: {
+    	// Mobile Landscape
+			perPage: 1,
+      gap: '3vw',
+		},
+    479: {
+    	// Mobile Portrait
+			perPage: 1,
+      gap: '3vw',
+		}
+	}
+} ).mount();
+}
+}
+slider1();
+function slider2() {
+let splides = $('.slider2');
+for ( let i = 0, splideLength = splides.length; i < splideLength; i++ ) {
+	new Splide( splides[ i ], {
+  // Desktop on down
+	perPage: 5,
+	perMove: 1,
+  focus: 'center', // 0 = left and 'center' = center
+  type: 'loop', // 'loop' or 'slide'
+  gap: '4em', // space between slides
+  arrows: 'slider', // 'slider' or false
+  pagination: 'slider', // 'slider' or false
+  speed : 550, // transition speed in miliseconds
+  dragAngleThreshold: 80, // default is 30
+  autoWidth: false, // for cards with differing widths
+  rewind : false, // go back to beginning when reach end
+  rewindSpeed : 800,
+  waitForTransition : false,
+  updateOnMove : true,
+  trimSpace: false,
+  breakpoints: {
+		991: {
+    	// Tablet
+			perPage: 3,
+      gap: '4vw',
+		},
+    767: {
+    	// Mobile Landscape
+			perPage: 1,
+      gap: '4vw',
+		},
+    479: {
+    	// Mobile Portrait
+			perPage: 1,
+      gap: '4vw',
+		}
+	}
+} ).mount();
+}
+}
+slider2();
+</script>
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
         }</style></head>
